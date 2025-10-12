@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybersécurité — Carte interactive</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: #1e293b;
+      padding: 15px 25px;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    #mynetwork {
+      flex: 2;
+      background: radial-gradient(circle at center, #16233a 0%, #0f172a 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    aside {
+      flex: 1;
+      background: #111827;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: #1f2937;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .explanation {
+      background: #0d1117;
+      border-left: 4px solid #3b82f6;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <header>🧠 Cybersécurité — Carte interactive</header>
+
+  <main>
+    <div id="mynetwork"></div>
+    <aside>
+      <div class="card" id="info-card">
+        <h3>Bienvenue 👋</h3>
+        <p>
+          Clique sur une bulle dans la carte à gauche pour découvrir ce qu'elle
+          signifie et comment t’en protéger.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Outils utiles 🧰</h3>
+        <ul>
+          <li><a href="https://www.virustotal.com" target="_blank" style="color:#3b82f6;">🔍 VirusTotal — Vérifie un fichier</a></li>
+          <li><a href="https://haveibeenpwned.com/" target="_blank" style="color:#3b82f6;">🕵️‍♂️ HaveIBeenPwned — Vérifie si ton mail a fuité</a></li>
+          <li><a href="https://passwordsgenerator.net/" target="_blank" style="color:#3b82f6;">🔐 Générer un mot de passe fort</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Actions 🖨️</h3>
+        <button class="btn" onclick="window.print()">Imprimer la fiche</button>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const nodes = new vis.DataSet([
+      { id: 0, label: "Cybersécurité", color: "#2563eb", font: { color: "white", size: 22 } },
+      { id: 1, label: "Phishing\n(Faux message)", color: "#dc2626", font: { color: "white" } },
+      { id: 2, label: "Virus / Malware", color: "#dc2626", font: { color: "white" } },
+      { id: 3, label: "Ransomware", color: "#dc2626", font: { color: "white" } },
+      { id: 4, label: "Spyware", color: "#dc2626", font: { color: "white" } },
+      { id: 5, label: "Faux site / appli", color: "#dc2626", font: { color: "white" } },
+      { id: 6, label: "Mises à jour", color: "#16a34a", font: { color: "white" } },
+      { id: 7, label: "Antivirus à jour", color: "#16a34a", font: { color: "white" } },
+      { id: 8, label: "Mots de passe forts", color: "#16a34a", font: { color: "white" } },
+      { id: 9, label: "Sauvegardes", color: "#16a34a", font: { color: "white" } },
+      { id: 10, label: "Vérifier les liens", color: "#16a34a", font: { color: "white" } },
+    ]);
+
+    const edges = new vis.DataSet([
+      { from: 0, to: 1 }, { from: 0, to: 2 }, { from: 0, to: 3 },
+      { from: 0, to: 4 }, { from: 0, to: 5 },
+      { from: 0, to: 6 }, { from: 0, to: 7 }, { from: 0, to: 8 },
+      { from: 0, to: 9 }, { from: 0, to: 10 },
+    ]);
+
+    const container = document.getElementById("mynetwork");
+    const data = { nodes, edges };
+    const options = {
+      physics: false,
+      nodes: { shape: "box", margin: 10, widthConstraint: { maximum: 180 }, borderWidth: 1 },
+      edges: { color: { color: "#64748b" }, smooth: false },
+      interaction: { hover: true }
+    };
+    const network = new vis.Network(container, data, options);
+
+    const positions = {
+      0: { x: 0, y: 0 },
+      1: { x: -350, y: -200 },
+      2: { x: -350, y: -100 },
+      3: { x: -350, y: 0 },
+      4: { x: -350, y: 100 },
+      5: { x: -350, y: 200 },
+      6: { x: 350, y: -200 },
+      7: { x: 350, y: -100 },
+      8: { x: 350, y: 0 },
+      9: { x: 350, y: 100 },
+      10: { x: 350, y: 200 },
+    };
+
+    network.once("afterDrawing", () => {
+      for (const id in positions) {
+        network.moveNode(id, positions[id].x, positions[id].y);
+      }
+    });
+
+    // Explications simples
+    const infos = {
+      1: "🦈 Le phishing, c’est quand quelqu’un t’envoie un faux message (souvent par mail ou SMS) pour te voler tes infos. Par exemple : un faux mail de ta banque qui te demande ton mot de passe.",
+      2: "🦠 Les virus et malwares sont des programmes qui abîment ton ordinateur ou volent tes données.",
+      3: "💰 Le ransomware bloque tes fichiers et demande une rançon pour les récupérer.",
+      4: "👀 Le spyware observe ce que tu fais sur ton appareil sans que tu le saches.",
+      5: "🎭 Les faux sites imitent les vrais (banques, réseaux sociaux...) pour te voler tes infos de connexion.",
+      6: "🔄 Faire les mises à jour corrige les failles que les pirates pourraient utiliser.",
+      7: "🧱 Un antivirus détecte et supprime les virus avant qu’ils ne fassent des dégâts.",
+      8: "🔑 Des mots de passe longs et différents pour chaque site te protègent des piratages.",
+      9: "💾 Faire des sauvegardes permet de tout récupérer en cas de problème.",
+      10: "🔍 Toujours vérifier l’adresse d’un lien avant de cliquer. Si tu doutes, ne clique pas !",
+    };
+
+    const infoCard = document.getElementById("info-card");
+
+    network.on("click", function (params) {
+      if (params.nodes.length > 0) {
+        const nodeId = params.nodes[0];
+        const explanation = infos[nodeId];
+        if (explanation) {
+          infoCard.innerHTML = `
+            <h3>${nodes.get(nodeId).label}</h3>
+            <div class="explanation">${explanation}</div>
+          `;
+        } else {
+          infoCard.innerHTML = `<h3>Cybersécurité</h3><p>Clique sur une bulle rouge ou verte pour en savoir plus.</p>`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
