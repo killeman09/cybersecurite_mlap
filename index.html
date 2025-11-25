@@ -153,16 +153,9 @@
 
     // Edges droites (smooth:false)
     const edges = new vis.DataSet([
-      { from:1, to:8, color:"#60a5fa" }, // Phishing -> Vérifier liens
-      { from:1, to:9, color:"#60a5fa" }, // Phishing -> Mots de passe forts
-      { from:2, to:10, color:"#f97316" }, // Malware -> Antivirus
-      { from:3, to:11, color:"#facc15" }, // Ransomware -> Mises à jour
-      { from:3, to:12, color:"#facc15" }, // Ransomware -> Sauvegardes régulières
-      { from:4, to:10, color:"#22d3ee" }, // Spyware -> Antivirus
-      { from:5, to:10, color:"#f43f5e" }, // Trojan -> Antivirus
-      { from:6, to:14, color:"#10b981" }, // Ing. sociale -> Sensibilisation
-      { from:7, to:9, color:"#3b82f6" },  // Fuite -> Mots de passe forts
-      { from:7, to:13, color:"#3b82f6" }  // Fuite -> 2FA
+      
+      
+      
     ]);
 
     const container = document.getElementById('mynetwork');
@@ -257,7 +250,7 @@
         title: "Fuite de données",
         text: "💧 Fuite de données — informations personnelles rendues publiques suite à un incident.",
         practices: [
-          { label: "Mots de passe forts", note: "Utilise des mots de passe uniques et un gestionnaire.", url: "https://guardia.school/boite-a-outils/fuite-de-donnees-tout-ce-quil-faut-savoir.html" },
+          { label: "Mots de passe forts", note: "Utilise des mots de passe uniques et un gestionnaire.", url: "https://guardia.school/boite-a-outils/fuite-de-donnees-tout-ce-quil-faut-savoir.html<" },
           { label: "Authentification 2FA", note: "Active la double authentification sur les services importants.", url: "https://authenticator.google.com/" }
         ]
       },
@@ -364,7 +357,57 @@
       { q: "Que faire si on te demande tes identifiants par message ?", choices: ["Ne pas répondre et vérifier la source", "Répondre tout de suite", "Envoyer la photo de ta carte"], correct: 0, exp: "Ne jamais communiquer d'identifiants via message non vérifié." },
       { q: "Comment reconnaître un email de phishing ?", choices: ["Adresses étranges, fautes, demandes urgentes", "Parfaitement rédigé", "Toujours envoyé par un ami"], correct: 0, exp: "Adresse suspecte, fautes, ou demandes urgentes sont des signaux." },
       { q: "Que faire si un fichier téléchargé semble suspect ?", choices: ["Ne pas l'ouvrir et le scanner (VirusTotal)", "L'ouvrir quand même", "Le partager"], correct: 0, exp: "Scanner via un service fiable ou supprimer le fichier." },
-      { q: "L'authentification 2FA sert à :", choices: ["Ajouter une seconde vérification pour protéger un compte", "Rendre l'ordinateur plus rapide", "Supprimer les mots de passe"], correct: 0, exp: "La 2FA ajoute un second facteur (SMS/app/clé) pour sécuriser l'accès." }
+      { q: "L'authentification 2FA sert à :", choices: ["Ajouter une seconde vérification pour protéger un compte", "Rendre l'ordinateur plus rapide", "Supprimer les mots de passe"], correct: 0, exp: "La 2FA ajoute un second facteur (SMS/app/clé) pour sécuriser l'accès." },
+      { q: "Que faire si on te demande tes identifiants par message ?", choices: ["Ne pas répondre et vérifier la source", "Répondre tout de suite", "Envoyer la photo de ta carte"], correct: 0, exp: "Ne jamais communiquer d'identifiants via un message non vérifié." },
+      { q: "Que dois-tu faire si un site te semble suspect ?", choices: ["Quitter immédiatement", "Entrer ton email pour voir", "Tester avec un faux mot de passe"], correct: 0, exp: "Si un site est suspect, il faut le quitter sans interagir." },
+      { q: "Quel est le meilleur moyen de créer un mot de passe sécurisé ?", choices: ["Utiliser ton prénom et ta date de naissance", "Utiliser une phrase longue et unique", "Utiliser le même mot de passe partout"], correct: 1, exp: "Une phrase longue, unique et complexe renforce la sécurité." },
+      { q: "Que faire avant de télécharger une application ?", choices: ["Vérifier les avis et permissions", "La télécharger directement", "Demander à un inconnu"], correct: 0, exp: "Toujours lire les avis et permissions avant téléchargement." },
+      { q: "Si tu reçois un email urgent demandant de payer quelque chose ?", choices: ["Payer immédiatement", "Vérifier via une source officielle", "Répondre pour demander plus d’infos"], correct: 1, exp: "Toujours passer par un site ou contact officiel avant d'agir." },
+      { q: "Pourquoi activer l’authentification à deux facteurs ?", choices: ["Pour décorer ton compte", "Pour ajouter une protection supplémentaire", "Pour recevoir plus de mails"], correct: 1, exp: "Le 2FA ajoute une sécurité supplémentaire." },
+      { q: "Que faire si un ami te demande de l’argent par message ?", choices: ["Envoyer tout de suite", "Appeler pour confirmer", "Ignorer"], correct: 1, exp: "Toujours confirmer par un autre moyen." },
+      { q: "Un wifi public est… ?", choices: ["Totalement sécurisé", "Risqué si tu te connectes à des comptes sensibles", "Meilleur qu’un wifi privé"], correct: 1, exp: "Les réseaux publics sont risqués pour les données sensibles." },
+      { q: "Un fichier .exe reçu par email ?", choices: ["Ouvrir pour voir", "Supprimer si non sollicité", "Envoyer à un ami"], correct: 1, exp: "Les exécutables peuvent contenir des malwares." },
+      { q: "Que faire si ton ordinateur devient soudain très lent ?", choices: ["Ignorer", "Redémarrer puis analyser avec un antivirus", "Installer un logiciel inconnu"], correct: 1, exp: "Une analyse antivirus peut détecter une infection." },
+      { q: "Comment reconnaître un site sécurisé ?", choices: ["Présence de https et cadenas", "Design moderne", "Beaucoup de pubs"], correct: 0, exp: "Le HTTPS indique une connexion chiffrée." },
+      { q: "Tu vois une offre trop belle pour être vraie ?", choices: ["C’est sûrement vrai", "C’est probablement une arnaque", "Il faut payer pour vérifier"], correct: 1, exp: "Les arnaques utilisent des offres irréalistes." },
+      { q: "Pourquoi mettre à jour ses logiciels ?", choices: ["Pour décorer l’interface", "Pour corriger des failles de sécurité", "Parce que c’est obligatoire"], correct: 1, exp: "Les mises à jour corrigent des vulnérabilités." },
+      { q: "Comment éviter le phishing ?", choices: ["Cliquer sur tous les liens", "Vérifier l'adresse de l'expéditeur", "Répondre pour vérifier"], correct: 1, exp: "Toujours vérifier l’expéditeur et ne pas cliquer sur des liens suspects." },
+      { q: "Que faire avant de brancher une clé USB trouvée ?", choices: ["La brancher pour voir", "Ne pas l’utiliser", "La donner à un ami"], correct: 1, exp: "Les clés trouvées peuvent contenir des malwares." },
+      { q: "Comment protéger tes comptes sociaux ?", choices: ["Mot de passe fort + 2FA", "Mitonner un pseudonyme", "Partager tes identifiants avec un ami"], correct: 0, exp: "Un mot de passe fort et le 2FA renforcent la sécurité." },
+      { q: "Si une fenêtre pop-up dit que ton PC est infecté ?", choices: ["Cliquer sur le lien", "Fermer et analyser avec un vrai antivirus", "Redémarrer 20 fois"], correct: 1, exp: "Ces pop-ups sont souvent des arnaques." },
+      { q: "Quel est le risque d’un lien raccourci (bit.ly) ?", choices: ["Aucun", "Dissimuler un site malveillant", "Plus rapide"], correct: 1, exp: "Un lien raccourci peut cacher une destination dangereuse." },
+      { q: "Pourquoi sauvegarder ses données ?", choices: ["Pour libérer de la place", "Pour éviter la perte en cas de panne ou ransomware", "Juste pour le fun"], correct: 1, exp: "Les sauvegardes protègent contre la perte de données." },
+      { q: "Que faire si ton compte semble compromis ?", choices: ["Changer le mot de passe immédiatement", "Attendre", "Créer un deuxième compte"], correct: 0, exp: "Changer le mot de passe et vérifier l’activité est prioritaire." },
+      { q: "Une demande de paiement en cryptomonnaie ?", choices: ["Très fiable", "Souvent un signe d’arnaque", "Toujours nécessaire"], correct: 1, exp: "Les arnaques demandent souvent des paiements non traçables." },
+      { q: "Pourquoi ne pas réutiliser le même mot de passe ?", choices: ["Aucune raison", "Une fuite compromettrait tous les comptes", "Pour embêter"], correct: 1, exp: "La réutilisation augmente les risques de compromission." },
+      { q: "Installer un logiciel cracké peut…", choices: ["Ajouter des skins", "Installer des virus", "Rendre ton PC plus rapide"], correct: 1, exp: "Les cracks sont une source majeure de malwares." },
+      { q: "Comment repérer un faux compte sur les réseaux ?", choices: ["Photo trop parfaite, peu d’activités", "Beaucoup de followers", "Nom stylé"], correct: 0, exp: "Les faux comptes montrent souvent des signes évidents." },
+      { q: "Un email sans fautes d’orthographe est…", choices: ["Toujours fiable", "Pas forcément fiable", "Une preuve de sécurité"], correct: 1, exp: "Les arnaques peuvent être bien rédigées." },
+      { q: "Un mot de passe doit contenir :", choices: ["Infos personnelles", "Lettres, chiffres, symboles", "Seulement des lettres"], correct: 1, exp: "Les combinaisons complexes augmentent la sécurité." },
+      { q: "Pourquoi éviter les réseaux P2P illégaux ?", choices: ["Pas pratiques", "Risque élevé de malwares", "Ils sont lents"], correct: 1, exp: "Ces réseaux sont souvent infectés." },
+      { q: "La meilleure réaction face à un message suspect ?", choices: ["Vérifier la source", "Partager avec tout le monde", "Répondre pour voir"], correct: 0, exp: "Vérifier évite d’interagir avec une arnaque." },
+      { q: "Que faire si tu doutes d’un lien ?", choices: ["Cliquer pour vérifier", "Le passer dans un vérificateur de lien", "L’envoyer à un ami"], correct: 1, exp: "Un service de vérification analyse la sécurité du lien." },
+      { q: "Une application demandant trop de permissions ?", choices: ["Normal", "Suspect", "Obligatoire"], correct: 1, exp: "Des permissions excessives peuvent cacher un risque." },
+      { q: "Pourquoi verrouiller son téléphone ?", choices: ["Pour économiser la batterie", "Pour protéger les données", "Pour le style"], correct: 1, exp: "Le verrou empêche l’accès non autorisé." },
+      { q: "Qu’est-ce qu’un ransomware ?", choices: ["Un virus qui demande une rançon", "Un antivirus spécial", "Une mise à jour"], correct: 0, exp: "Il bloque les données et demande un paiement." },
+      { q: "Que faire si tu reçois un SMS d’un faux numéro bancaire ?", choices: ["Cliquer pour vérifier", "Supprimer et appeler la vraie banque", "Répondre STOP"], correct: 1, exp: "Toujours contacter la source officielle." },
+      { q: "Pourquoi utiliser un gestionnaire de mots de passe ?", choices: ["Pour mémoriser plus facilement", "Pour créer et stocker des mots de passe sécurisés", "Pour trier tes photos"], correct: 1, exp: "Ils permettent de gérer des mots de passe forts." },
+      { q: "Un QR code inconnu peut…", choices: ["Être fiable", "Rediriger vers un site dangereux", "Nettoyer ton téléphone"], correct: 1, exp: "Les QR codes peuvent cacher des liens dangereux." },
+      { q: "Que faire si tu trouves une offre avec compte Netflix gratuit ?", choices: ["Cliquer direct", "C’est sûrement une arnaque", "Partager aux amis"], correct: 1, exp: "Les offres illégitimes sont souvent malveillantes." },
+      { q: "Pourquoi ne pas publier d'infos personnelles ?", choices: ["Pour être mystérieux", "Pour éviter le harcèlement ou vol d'identité", "Parce que c’est interdit"], correct: 1, exp: "La diffusion d'infos personnelles est risquée." },
+      { q: "Un ami t’envoie un lien bizarre ?", choices: ["Cliquer car c’est un ami", "Lui demander s'il l’a vraiment envoyé", "L’ouvrir sur un autre appareil"], correct: 1, exp: "Les comptes compromis envoient souvent des liens malveillants." },
+      { q: "Un mot de passe envoyé par email ?", choices: ["Normal", "Très risqué", "Obligatoire"], correct: 1, exp: "Les mots de passe ne doivent jamais être envoyés en clair." },
+      { q: "Comment éviter les virus ?", choices: ["Installer un antivirus et éviter les sites douteux", "Télécharger tout", "Désactiver l’antivirus"], correct: 0, exp: "Une navigation prudente réduit les infections." },
+      { q: "Que faire si ton navigateur affiche un avertissement rouge ?", choices: ["Ignorer", "Ne pas continuer", "Recharger"], correct: 1, exp: "Ces avertissements signalent un danger." },
+      { q: "Que faire si un site demande trop d’informations personnelles ?", choices: ["Tout remplir", "Stopper", "Répondre au hasard"], correct: 1, exp: "Fournir trop d’infos augmente les risques." },
+      { q: "Pourquoi protéger sa webcam ?", choices: ["Par paranoïa", "Pour éviter qu'elle soit piratée", "Pour le décor"], correct: 1, exp: "Les webcams peuvent être hackées." },
+      { q: "Le phishing peut se faire via…", choices: ["Email uniquement", "Email, SMS, appels, réseaux", "Rien du tout"], correct: 1, exp: "Le phishing peut emprunter plusieurs canaux." },
+      { q: "Pourquoi lire les conditions d'une application ?", choices: ["Pour rigoler", "Pour savoir ce qu’elle collecte", "Pour perdre du temps"], correct: 1, exp: "Certaines apps collectent beaucoup de données." },
+      { q: "Que faire si ton antivirus détecte une menace ?", choices: ["La supprimer via l’antivirus", "Ignorer", "Partager"], correct: 0, exp: "Suivre les instructions de l’antivirus." },
+      { q: "Pourquoi éviter de cliquer sur les pubs 'vous avez gagné' ?", choices: ["C’est faux", "Souvent malveillant", "Par timidité"], correct: 1, exp: "Ces pubs sont presque toujours frauduleuses." },
+      { q: "Un message d’un inconnu contenant un fichier ?", choices: ["Ouvrir", "Supprimer", "Envoyer à d’autres"], correct: 1, exp: "Ne jamais ouvrir un fichier provenant d’un inconnu." },
+      { q: "L’ingénierie sociale consiste à…", choices: ["Réparer des machines", "Manipuler quelqu’un pour obtenir des infos", "Programmer"], correct: 1, exp: "Les attaquants exploitent la psychologie humaine." },
+      { q: "Tu reçois un appel d’un faux support technique ?", choices: ["Donner l’accès à ton PC", "Raccrocher immédiatement", "Demander un selfie"], correct: 1, exp: "Les faux supports techniques sont fréquents." }
     ];
     // length should be 15
     // pick 6 random unique indices
@@ -381,7 +424,7 @@
     let quizIndices = [];      // indices into allQuestions
     let currentQuestion = 0;   // 0..5
     let userAnswers = {};      // { questionIdxInQuiz: chosenIndex }
-    const QUIZ_SIZE = 6;
+    const QUIZ_SIZE = 15;
 
     // UI elements
     const quizPopup = document.getElementById('quizPopup');
